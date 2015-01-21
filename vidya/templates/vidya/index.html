@@ -1,0 +1,25 @@
+
+
+
+{% extends 'vidya/base.html' %}
+
+{% block content %}
+<div class='row'>
+  <div class="col-md-2">
+  </div>
+  {% for vidya in vidya_list %}
+    <div class="col-md-8">
+      <div class="panel panel-primary">
+        <div class="panel panel-heading">
+          <div class="panel-title" align="center" >Videogame List</div>
+        </div>
+        <div class="panel panel-body">
+          {{ vidya.title  }}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  <div class="col-md-2">
+  </div>
+</div>
+{% endblock %}

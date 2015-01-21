@@ -1,0 +1,35 @@
+Vagrant.configure(2) do |config|
+
+  config.vm.box_download_insecure = true
+  config.vm.box = "chef/centos-6.6"
+  #config.vm.network "public_network"
+  config.vm.network :forwarded_port, guest: 8000, host: 8000
+  
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+    v.cpus = 4
+  end
+  
+  config.vm.provision "shell", inline: <<-SHELL
+     sudo yum -y update
+     
+     #tools for Python
+     sudo yum -y groupinstall "Development tools"
+     sudo yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel
+
+     #actual Python
+     wget http://python.org/ftp/python/3.3.5/Python-3.3.5.tar.xz
+     tar xf Python-3.3.5.tar.xz
+     cd Python-3.3.5
+     ./configure --prefix=/usr/local --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
+     sudo make && sudo make altinstall
+     
+     #pip
+     wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
+     sudo /usr/local/bin/python3.3 ez_setup.py
+     sudo /usr/local/bin/easy_install-3.3 pip
+     sudo /usr/local/bin/pip3.3 install Django
+     
+     
+  SHELL
+end

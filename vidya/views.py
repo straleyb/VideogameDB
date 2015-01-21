@@ -7,6 +7,6 @@ from django.views import generic
 
 class IndexView(generic.ListView):
 	template_name = 'vidya/index.html'
-	context_obhect_name = 'vidya_list'
+	context_object_name = 'vidya_list'
 	def get_queryset(self):
-		return Videogame.objects.order_by('title')
+		return Videogame.objects.order_by('-title')

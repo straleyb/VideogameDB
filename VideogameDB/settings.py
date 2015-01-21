@@ -37,9 +37,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'jquery',
+    'bootstrap3',
     'vidya',
     'VideogameDB',
-    'twitter_bootstrap',
 )
 
 MIDDLEWARE_CLASSES = (
