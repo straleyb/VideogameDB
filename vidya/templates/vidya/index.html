@@ -4,22 +4,26 @@
 {% extends 'vidya/base.html' %}
 
 {% block content %}
+{% for vidya in vidya_list %}
 <div class='row'>
   <div class="col-md-2">
   </div>
-  {% for vidya in vidya_list %}
-    <div class="col-md-8">
-      <div class="panel panel-primary">
-        <div class="panel panel-heading">
-          <div class="panel-title" align="center" >Videogame List</div>
-        </div>
-        <div class="panel panel-body">
-          {{ vidya.title  }}
-        </div>
+  <div class="col-md-8">
+    <div class="panel panel-primary">
+      <div class="panel panel-heading">
+        <div class="panel-title" align="center" >{{ vidya.title  }}</div>
+      </div>
+      <div class="panel panel-body">
+          {{ vidya.publisher  }}</br>
+	  {{ vidya.description  }}</br>
+	  {{ vidya.year  }}</br>
+	  {{ vidya.beaten  }}</br>
+	  {{ vidya.rating  }}</br>
       </div>
     </div>
-  {% endfor %}
+  </div>
   <div class="col-md-2">
   </div>
 </div>
+{% endfor %}
 {% endblock %}
